@@ -1,10 +1,10 @@
-package src.main.java.com.mycompany.scaff.java.relation;
+package src.scaff.java.relation;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import src.main.java.com.mycompany.scaff.java.utils.Mapping;
-import src.main.java.com.mycompany.scaff.java.utils.TableUtility;
+import src.scaff.java.utils.Mapping;
+import src.scaff.java.utils.TableUtility;
 
 public class Table {
     

@@ -1,4 +1,4 @@
-package src.main.java.com.mycompany.scaff.java.relation;
+package src.scaff.java.relation;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import src.main.java.com.mycompany.scaff.java.utils.Mapping;
+import src.scaff.java.utils.Mapping;
 
 public class Database {
     
@@ -34,13 +34,11 @@ public class Database {
             
             for (Table table : this.tables) {
                 i += 1;
+                System.out.println(table.getName());
                 if(table.getName().equals(tableName)){
                     table.write(language, path, k, mapping);
                     break;
                 }
-            }
-            if(i == tables.size()){
-                throw new Exception("La table "+tableName+" n'existe pas dans la base de donnée.");
             }
             System.out.println(i + " " + tables.size());
         }
@@ -88,7 +86,7 @@ public class Database {
                 Column column = new Column();
                 column.setIsForeignKey(isForeignKey);
                 column.setIsPrimaryKey(isPrimaryKey);
-                column.setSqlType(typeColonne);
+                column.setSqlType(typeColonne.toLowerCase());
                 column.setTableName(nomTable);
                 table.addColumnWithDetails(nomColonne, column);
             }

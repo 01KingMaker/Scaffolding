@@ -3,6 +3,7 @@ char=Char
 text=String
 tinyint=Byte
 smallint=Short
+int=Integer
 int4=Integer
 int8=Integer
 int2=Integer

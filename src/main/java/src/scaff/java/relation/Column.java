@@ -1,4 +1,4 @@
-package src.main.java.com.mycompany.scaff.java.relation;
+package src.scaff.java.relation;
 
 public class Column {
  
@@ -6,6 +6,7 @@ public class Column {
     Boolean isPrimaryKey = false;
     Boolean isForeignKey = false;
     String sqlType;
+
     public void setSqlType(String sqlType) {
         this.sqlType = sqlType;
     }

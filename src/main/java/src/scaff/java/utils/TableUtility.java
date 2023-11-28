@@ -1,4 +1,4 @@
-package src.main.java.com.mycompany.scaff.java.utils;
+package src.scaff.java.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

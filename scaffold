@@ -39,4 +39,4 @@ if [ -z "$library" ] || [ -z "$language" ] || [ -z "$outputdirectory" ] || [ -z 
     exit 1
 fi
 echo java -cp "$library/*" src.main.java.com.mycompany.Scaff "$library" "$language" "$outputdirectory" "$package"
-java -cp "$library/*" src.main.java.com.mycompany.Scaff "$library" "$language" "$outputdirectory" "$package" "$table"
+java -cp "$library/*" src.scaff.Scaff "$library" "$language" "$outputdirectory" "$package" "$table"

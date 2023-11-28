@@ -1,13 +1,12 @@
-package src.main.java.com.mycompany.scaff.java.connexion;
+package src.scaff.java.connexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import src.main.java.com.mycompany.scaff.java.utils.Mapping;
-import src.main.java.com.mycompany.scaff.java.utils.TableUtility;
-
 import java.util.HashMap;
+
+import src.scaff.java.utils.Mapping;
+import src.scaff.java.utils.TableUtility;
 
 public class Connexion {
 

@@ -1,4 +1,4 @@
-package src.main.java.com.mycompany.scaff.java.utils;
+package src.scaff.java.utils;
 
 import java.util.HashMap;
 public class Mapping {
