@@ -1,2 +1,2 @@
     [Column(name = "[columnName]")]
-    public [fieldType] [fieldName] { get; set; }    
+    private [fieldType] [fieldName];

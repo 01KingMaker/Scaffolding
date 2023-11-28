@@ -61,7 +61,36 @@ public class Database {
             while (resultSetColonnes.next()) {
                 String nomColonne = resultSetColonnes.getString("COLUMN_NAME");
                 String typeColonne = resultSetColonnes.getString("TYPE_NAME");
-                table.addColumn(nomColonne, typeColonne);
+
+                // implementation primary key
+                boolean isPrimaryKey = false;
+                boolean isForeignKey = false;
+                
+                ResultSet primaryKeys = metaData.getPrimaryKeys(nomBaseDeDonnees, null, nomTable);
+                while (primaryKeys.next()) {
+                    if (nomColonne.equals(primaryKeys.getString("COLUMN_NAME"))) {
+                        isPrimaryKey = true;
+                        break;
+                    }
+                }
+                primaryKeys.close();
+                
+                ResultSet importedKeys = metaData.getImportedKeys(nomBaseDeDonnees, null, nomTable);
+                while (importedKeys.next()) {
+                    if (nomColonne.equals(importedKeys.getString("FKCOLUMN_NAME"))) {
+                        isForeignKey = true;
+                        break;
+                    }
+                }
+                importedKeys.close();
+
+                // foreign key
+                Column column = new Column();
+                column.setIsForeignKey(isForeignKey);
+                column.setIsPrimaryKey(isPrimaryKey);
+                column.setSqlType(typeColonne);
+                column.setTableName(nomTable);
+                table.addColumnWithDetails(nomColonne, column);
             }
             this.tables.add(table);
         }

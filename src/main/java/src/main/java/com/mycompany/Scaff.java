@@ -19,7 +19,6 @@ public class Scaff {
     public static void main(String[] args) throws Exception, ClassNotFoundException{
     
         Connexion connexion;
-        
         try {
           connexion = new Connexion(/*"chat" args[0], args[1], password*/);
           java.sql.Connection c = connexion.enterBdd(); 

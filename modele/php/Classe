@@ -1,7 +1,5 @@
-
-
-//[imort]
-
+namespace [package];
+use Illuminate\Database\Eloquent\Model;
 
 /*
     *
@@ -10,7 +8,7 @@
 */
 <?php
 
-class [className]
+class [className] extends Model
 {
 
 [fields]
