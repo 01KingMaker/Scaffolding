@@ -1,7 +1,6 @@
 package [package];
 
-import dao.annotation.Table;
-import dao.annotation.Column;
+import annotation.*;
 // ok
 @Table(name = "[tableName]")
 public class [className]

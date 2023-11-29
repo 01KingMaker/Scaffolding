@@ -40,7 +40,6 @@ public class Connexion {
         return conf;
     }
 
-
     public String getUrl() {
         return url;
     }

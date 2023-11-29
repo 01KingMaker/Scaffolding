@@ -6,7 +6,18 @@ public class Column {
     Boolean isPrimaryKey = false;
     Boolean isForeignKey = false;
     String sqlType;
+   
+    
+    public Column(String tableName, Boolean isPrimaryKey, Boolean isForeignKey, String sqlType) {
+        this.tableName = tableName;
+        this.isPrimaryKey = isPrimaryKey;
+        this.isForeignKey = isForeignKey;
+        this.sqlType = sqlType;
+    }
+    
+    public Column(){
 
+    }
     public void setSqlType(String sqlType) {
         this.sqlType = sqlType;
     }

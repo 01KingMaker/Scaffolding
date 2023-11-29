@@ -31,7 +31,6 @@ public class Database {
         }
         else{
             int i = 0;
-            
             for (Table table : this.tables) {
                 i += 1;
                 System.out.println(table.getName());
@@ -46,52 +45,47 @@ public class Database {
 
     public void setDatabase(Connection connexion) throws ClassNotFoundException, SQLException{
         this.tables = new ArrayList<>();
-        DatabaseMetaData metaData = connexion.getMetaData();
-        String nomBaseDeDonnees = connexion.getCatalog();
-        this.databaseName = nomBaseDeDonnees;
-        ResultSet resultSetTables = metaData.getTables(nomBaseDeDonnees, null, "%", new String[]{"TABLE"});
+        DatabaseMetaData metaData = connexion.getMetaData(); 
+        this.databaseName = connexion.getCatalog();
+        ResultSet resultSetTables = metaData.getTables(this.databaseName, null, "%", new String[]{"TABLE"});
         while (resultSetTables.next()) {
             String nomTable = resultSetTables.getString("TABLE_NAME");
-            ResultSet resultSetColonnes = metaData.getColumns(nomBaseDeDonnees, null, nomTable, "%");
+            ResultSet resultSetColonnes = metaData.getColumns(this.databaseName, null, nomTable, "%");
             Table table = new Table();
             table.setName(nomTable);
-            table.setDataBase(nomBaseDeDonnees);
+            table.setDataBase(this.databaseName);
             while (resultSetColonnes.next()) {
                 String nomColonne = resultSetColonnes.getString("COLUMN_NAME");
                 String typeColonne = resultSetColonnes.getString("TYPE_NAME");
-
-                // implementation primary key
-                boolean isPrimaryKey = false;
-                boolean isForeignKey = false;
-                
-                ResultSet primaryKeys = metaData.getPrimaryKeys(nomBaseDeDonnees, null, nomTable);
-                while (primaryKeys.next()) {
-                    if (nomColonne.equals(primaryKeys.getString("COLUMN_NAME"))) {
-                        isPrimaryKey = true;
-                        break;
-                    }
-                }
-                primaryKeys.close();
-                
-                ResultSet importedKeys = metaData.getImportedKeys(nomBaseDeDonnees, null, nomTable);
-                while (importedKeys.next()) {
-                    if (nomColonne.equals(importedKeys.getString("FKCOLUMN_NAME"))) {
-                        isForeignKey = true;
-                        break;
-                    }
-                }
-                importedKeys.close();
-
-                // foreign key
-                Column column = new Column();
-                column.setIsForeignKey(isForeignKey);
-                column.setIsPrimaryKey(isPrimaryKey);
-                column.setSqlType(typeColonne.toLowerCase());
-                column.setTableName(nomTable);
+                boolean isPrimaryKey = isPrimaryKey(metaData, this.databaseName, nomTable, nomColonne);
+                boolean isForeignKey = isForeignKey(metaData, this.databaseName, nomTable, nomColonne);
+                Column column = new Column(nomTable, isPrimaryKey, isForeignKey, typeColonne.toLowerCase());
                 table.addColumnWithDetails(nomColonne, column);
             }
             this.tables.add(table);
         }
+    }
+
+    public boolean isForeignKey(DatabaseMetaData metaData, String base, String tableName, String columnName) throws SQLException{
+        ResultSet importedKeys = metaData.getImportedKeys(base, null, tableName);
+        while (importedKeys.next()) {
+            if (columnName.equals(importedKeys.getString("FKCOLUMN_NAME"))) {
+                return true;
+            }
+        }
+        importedKeys.close();  
+        return false; 
+    }
+
+    public boolean isPrimaryKey(DatabaseMetaData metaData, String base, String tableName, String columnName) throws SQLException{
+        ResultSet primaryKeys = metaData.getPrimaryKeys(base, null, tableName);
+        while (primaryKeys.next()) {
+            if (columnName.equals(primaryKeys.getString("COLUMN_NAME"))) {
+                return true;
+            }
+        }
+        primaryKeys.close();
+        return false;
     }
    
     public String getDatabaseName() {

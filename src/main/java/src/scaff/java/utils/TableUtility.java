@@ -16,20 +16,16 @@ public class TableUtility {
             while ((ligne = reader.readLine()) != null) {
                 contenu.append(ligne).append("\n");
             }
-        } catch (IOException e) {
-            throw new Exception(e.getMessage());
-        }
+        } 
         return contenu.toString();
     }
-    public static void ecrireLettre(String contenu, String cheminFichier) {
+    public static void ecrireLettre(String contenu, String cheminFichier) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(cheminFichier))) {
             writer.write(contenu);
             System.out.println("Scaffolding " + cheminFichier);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
-    public static String ToJavaFormat(String fieldName){
+    public static String toJavaFormat(String fieldName){
         String retour = fieldName;
         List<String> regex = new ArrayList<>();
         for (int i = 0; i < retour.length(); i++) {

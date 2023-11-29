@@ -1,1 +1,1 @@
-    @PrimaryKey
+    @PrimaryKey(prefix = "", sequence = "", length = 0)

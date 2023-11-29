@@ -14,7 +14,7 @@ public class Table {
 
     public void write(String launguage, String pathOut,String k, Mapping mapping) throws Exception{
         String out = pathOut + "/"+
-        TableUtility.firtLetterToUpper(TableUtility.ToJavaFormat(this.name)) + "." + launguage;
+        TableUtility.firtLetterToUpper(TableUtility.toJavaFormat(this.name)) + "." + launguage;
         
         String path =System.getProperty("user.dir") + "/modele/"+launguage+"/Classe";
         String attributeModelPath =System.getProperty("user.dir") +  "/modele/"+launguage+"/Attribut";
@@ -31,7 +31,7 @@ public class Table {
         HashMap<String, String> data = new HashMap<String, String>();
         data.put("[tableName]", this.name);
         
-        data.put("[className]", TableUtility.firtLetterToUpper(TableUtility.ToJavaFormat(this.name)));
+        data.put("[className]", TableUtility.firtLetterToUpper(TableUtility.toJavaFormat(this.name)));
         modele = remplacerVariables(modele, attributModel, encapsulationModel, pathOut, mapping, k, pkModel, fkModel);
         TableUtility.ecrireLettre(modele, out);
     }
@@ -39,7 +39,7 @@ public class Table {
         pathOut = pathOut.replace("/", ".");
         modele = modele.replace("[package]", k);
         modele = modele.replace("[tableName]", this.name);
-        modele = modele.replace("[className]", TableUtility.firtLetterToUpper(TableUtility.ToJavaFormat(this.name)));
+        modele = modele.replace("[className]", TableUtility.firtLetterToUpper(TableUtility.toJavaFormat(this.name)));
         String finalAttribute = "";
         String finalEncapsulation = "";
 
@@ -53,22 +53,20 @@ public class Table {
                 attribut += fkModel;
             }
             attribut = attribut + attributModel.replace("[fieldType]",type)
-            .replace("[fieldName]",TableUtility.ToJavaFormat(entry.getKey()))
+            .replace("[fieldName]",TableUtility.toJavaFormat(entry.getKey()))
             .replace("[columnName]", entry.getKey())
             .concat("\n");
             
             finalAttribute = finalAttribute + attribut;
             
             finalEncapsulation = finalEncapsulation + encapsulationModel.
-            replace("[fieldNameFunc]",TableUtility.firtLetterToUpper(TableUtility.ToJavaFormat(entry.getKey()))).
+            replace("[fieldNameFunc]",TableUtility.firtLetterToUpper(TableUtility.toJavaFormat(entry.getKey()))).
             replace("[fieldType]", type)
-            .replace("[fieldName]", TableUtility.ToJavaFormat(entry.getKey()))
+            .replace("[fieldName]", TableUtility.toJavaFormat(entry.getKey()))
             .concat("\n");
         }
-
         modele = modele.replace("[fields]", finalAttribute);
         modele = modele.replace("[encapsulation]", finalEncapsulation);
-       
         return modele;
     }
     public Table(){}
