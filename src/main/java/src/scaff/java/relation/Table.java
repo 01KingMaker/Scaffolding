@@ -35,6 +35,7 @@ public class Table {
         modele = remplacerVariables(modele, attributModel, encapsulationModel, pathOut, mapping, k, pkModel, fkModel);
         TableUtility.ecrireLettre(modele, out);
     }
+    
     public String remplacerVariables(String modele, String attributModel, String encapsulationModel, String pathOut, Mapping mapping, String k, String pkModel, String fkModel) {
         pathOut = pathOut.replace("/", ".");
         modele = modele.replace("[package]", k);

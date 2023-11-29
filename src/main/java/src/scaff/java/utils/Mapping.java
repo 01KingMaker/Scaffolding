@@ -1,6 +1,7 @@
 package src.scaff.java.utils;
 
 import java.util.HashMap;
+
 public class Mapping {
 
     HashMap<String, String> mappings = new HashMap<String, String>();

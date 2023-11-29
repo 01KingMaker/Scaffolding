@@ -5,10 +5,12 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TableUtility {
+    
     public static String chargerModele(String cheminFichier) throws Exception {
         StringBuilder contenu = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
@@ -19,12 +21,14 @@ public class TableUtility {
         } 
         return contenu.toString();
     }
+    
     public static void ecrireLettre(String contenu, String cheminFichier) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(cheminFichier))) {
             writer.write(contenu);
             System.out.println("Scaffolding " + cheminFichier);
         }
     }
+
     public static String toJavaFormat(String fieldName){
         String retour = fieldName;
         List<String> regex = new ArrayList<>();
@@ -39,6 +43,7 @@ public class TableUtility {
         }
         return retour;
     }
+
     public static String firtLetterToUpper(String text){
         return text.substring(0,1).toUpperCase().concat(text.substring(1));
     }
