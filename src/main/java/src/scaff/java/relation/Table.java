@@ -45,7 +45,9 @@ public class Table {
         String finalEncapsulation = "";
 
         for (Map.Entry<String, Column> entry : this.columnsDetails.entrySet()) {
+            System.out.println(entry.getValue().getSqlType());
             String type = mapping.getMapping(entry.getValue().getSqlType()+"");
+
             String attribut = "";
             if(entry.getValue().getIsPrimaryKey()){
                 attribut += pkModel;

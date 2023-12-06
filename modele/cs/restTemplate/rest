@@ -1,0 +1,61 @@
+namespace [package];
+
+[ApiController]
+[Route("[controller]")]
+public class [ControllerName]Controller : ControllerBase
+{
+    private readonly [ControllerName]Service _service;
+
+    public [ControllerName]Controller([ControllerName]Service service)
+    {
+        _service = service;
+    }
+
+    [HttpGet]
+    public async Task<IEnumerable<[ControllerName]>> Get[ControllerName]()
+    {
+        return await _service.Get[ControllerName]();
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<[ControllerName]>> Get[ControllerName](long id)
+    {
+        var returnObject = await _service.Get[ControllerName](id);
+        if (returnObject == null)
+        {
+            return NotFound();
+        }
+        return returnObject;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<[ControllerName]>> Save[ControllerName](long id, [ControllerName] objectData)
+    {
+        var returnObject = await _service.Save[ControllerName](objectData);
+        if (returnObject == null)
+        {
+            return NotFound();
+        }
+        return returnObject;
+    }
+
+    [HttpPut]
+    public async Task<ActionResult<[ControllerName]>> Update[ControllerName]([ControllerName] objectData)
+    {
+        var returnObject = await _service.Update[ControllerName](objectData);
+        if (returnObject == null)
+        {
+            return NotFound();
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<[ControllerName]>> Delete[ControllerName](long id)
+    {
+        var returnObject = await _service.Delete[ControllerName](id);
+        if (returnObject == null)
+        {
+            return NotFound();
+        }
+    }
+}

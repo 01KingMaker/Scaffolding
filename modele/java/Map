@@ -7,6 +7,7 @@ int=Integer
 int4=Integer
 int8=Integer
 int2=Integer
+numeric=double
 bigint=Long
 float=Float
 float8=Float
