@@ -19,3 +19,4 @@
 ```
     ./scaffold --library target --language java --outputdirectory /home/fabien/Documents/S5/out  --package chat.action --table saison
 ```
+Mamorona branche à chaque sprint
