@@ -1,0 +1,36 @@
+import org.springframework.stereotype.Service;
+import com.example.model.[Name];
+import com.example.repository.[Name]Repository;
+import java.util.Optional;
+
+@Service
+public class [Name]Service {
+
+    private final [Name]Repository repository;
+
+    @Autowired
+    public [Name]Service([Name]Repository repository) {
+        this.repository = repository;
+    }
+
+    public [Name] findById(long id) throws Exception {
+        Optional<[Name]> oCat = [Name]Repository.findById(id);
+        if (oCat.isEmpty()) {
+            throw new Exception("Empty");
+        }
+        return oCat.get();
+    }
+    public [Name] findAll() {
+        return repository.findAll();
+    }
+    public [Name] save([Name] cat) {
+        return repository.save(cat);
+    }
+    public [Name] update([Name] cat) {
+        return repository.save(cat);
+    }
+    public [Name] delete(String id) {
+        repository.deleteById(id);
+        return cat;
+    }
+}

@@ -1,0 +1,34 @@
+package [package];
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.openclassrooms.api.model.[Name];
+import com.openclassrooms.api.service.[Name]Service;
+
+@RestController("/[Name]")
+public class [Name]Controller {
+    
+    @Autowired
+    private [Name]Service service;
+    
+    @GetMapping("/")
+    public Iterable<[Name]> get[Name]() {
+       return service.get[Name]();
+    }
+    @GetMapping("/{id}")
+    public Iterable<[Name]> get[Name](@PathVariable String id) {
+       return service.get[Name](id);
+    }
+    @PostMapping("/")
+    public Iterable<[Name]> save[Name]() {
+        return service.save[Name]();
+    }
+    @PutMapping("/")
+    public Iterable<[Name]> update[Name]() {
+        return service.update[Name]();
+    }
+    @DeleteMapping("/{id}")
+    public Iterable<[Name]> delete[Name](@PathVariable Long id) {
+        return service.delete[Name](id);
+    }
+}
