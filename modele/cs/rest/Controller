@@ -14,13 +14,13 @@ public class [Name]Controller : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<[Name]>> Get[Name]()
     {
-        return await _service.Get[Name]();
+        return await _service.GetAll[Name]();
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<[Name]>> Get[Name](string id)
     {
-        var returnObject = await _service.Get[Name](id);
+        var returnObject = await _service.GetById(id);
         if (returnObject == null)
         {
             return NotFound();
@@ -31,7 +31,7 @@ public class [Name]Controller : ControllerBase
     [HttpPost]
     public async Task<ActionResult<[Name]>> Save[Name](string id, [Name] objectData)
     {
-        var returnObject = await _service.Save[Name](objectData);
+        var returnObject = await _service.Create(objectData);
         if (returnObject == null)
         {
             return NotFound();
@@ -40,9 +40,9 @@ public class [Name]Controller : ControllerBase
     }
 
     [HttpPut]
-    public async Task<ActionResult<[Name]>> Update[Name]([Name] objectData)
+    public async Task<ActionResult<[Name]>> Update[Name]([Name] objectData, string id)
     {
-        var returnObject = await _service.Update[Name](objectData);
+        var returnObject = await _service.Update(objectData);
         if (returnObject == null)
         {
             return NotFound();
@@ -52,7 +52,7 @@ public class [Name]Controller : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult<[Name]>> Delete[Name](string id)
     {
-        var returnObject = await _service.Delete[Name](id);
+        var returnObject = await _service.Delete(id);
         if (returnObject == null)
         {
             return NotFound();
