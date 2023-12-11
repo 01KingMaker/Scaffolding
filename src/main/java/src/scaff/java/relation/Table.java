@@ -12,7 +12,7 @@ public class Table {
     String dataBase;
     HashMap<String, Column> columnsDetails = new HashMap<String, Column>();
 
-    public void write(String launguage, String pathOut,String k, Mapping mapping) throws Exception{
+    public void write(String launguage, String pathOut,String packageName, Mapping mapping) throws Exception{
         String out = pathOut + "/"+
         TableUtility.firtLetterToUpper(TableUtility.toJavaFormat(this.name)) + "." + launguage;
         
@@ -32,13 +32,13 @@ public class Table {
         data.put("[tableName]", this.name);
         
         data.put("[className]", TableUtility.firtLetterToUpper(TableUtility.toJavaFormat(this.name)));
-        modele = remplacerVariables(modele, attributModel, encapsulationModel, pathOut, mapping, k, pkModel, fkModel);
+        modele = remplacerVariables(modele, attributModel, encapsulationModel, pathOut, mapping, packageName, pkModel, fkModel);
         TableUtility.ecrireLettre(modele, out);
     }
     
-    public String remplacerVariables(String modele, String attributModel, String encapsulationModel, String pathOut, Mapping mapping, String k, String pkModel, String fkModel) {
+    public String remplacerVariables(String modele, String attributModel, String encapsulationModel, String pathOut, Mapping mapping, String packageName, String pkModel, String fkModel) {
         pathOut = pathOut.replace("/", ".");
-        modele = modele.replace("[package]", k);
+        modele = modele.replace("[package]", packageName);
         modele = modele.replace("[tableName]", this.name);
         modele = modele.replace("[className]", TableUtility.firtLetterToUpper(TableUtility.toJavaFormat(this.name)));
         String finalAttribute = "";
@@ -72,7 +72,9 @@ public class Table {
         modele = modele.replace("[encapsulation]", finalEncapsulation);
         return modele;
     }
+
     public Table(){}
+    
     public void setName(String name) {
         this.name = name;
     }

@@ -16,6 +16,7 @@ public class Scaff {
             Database database = new Database();
             database.setDatabase(c);
             database.writeClasses(args[1],args[2], args[3], args[4]);
+            database.writeRestAPI(args[1], args[2], args[4]);
         }
     }       
 }

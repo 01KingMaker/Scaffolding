@@ -14,6 +14,10 @@ public class Database {
     String databaseName;
     List<Table> tables;
 
+    public void writeRestAPI(String language, String path, String tableName) throws Exception {
+        new Rest().write(language, path, this.tables, tableName);
+    }
+
     public void writeClasses(String language, String path, String k) throws Exception{
         Mapping mapping = new Mapping();
         mapping.setMappingFromList(language);
