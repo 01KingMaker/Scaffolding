@@ -1,0 +1,11 @@
+package [package].[className];
+
+import jakarta.persistence.*;
+
+@Entity
+public class [className]
+{
+
+[fields]
+[encapsulation]
+}

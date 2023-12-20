@@ -1,0 +1,28 @@
+    @restApi
+    @MyAnnotation(url="insert", ParametersNames = {})
+    public [className] insert(){
+        this.insert(null);
+        return this;
+    }
+    @restApi
+    @MyAnnotation(url="update", ParametersNames = {})
+    public [className] update(){
+        this.update(null);
+        return this;
+    }
+    @restApi
+    @MyAnnotation(url="find", ParametersNames = {})
+    public Vector<[className]> findAll(){
+        return this.selectAll(null);
+    }
+    @restApi
+    @MyAnnotation(url="findById", ParametersNames = {})
+    public [className] findById(){
+        return this.select(null);
+    }
+    @restApi
+    @MyAnnotation(url="testApi", ParametersNames = {})
+    public [className] delete(){
+        this.delete(null);
+        return this;
+    }

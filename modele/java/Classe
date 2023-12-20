@@ -8,4 +8,5 @@ public class [className]
 
 [fields]
 [encapsulation]   
+[crudMethod]
 }

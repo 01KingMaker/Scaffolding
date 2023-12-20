@@ -25,7 +25,6 @@ public class TableUtility {
     public static void ecrireLettre(String contenu, String cheminFichier) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(cheminFichier))) {
             writer.write(contenu);
-            System.out.println("Scaffolding " + cheminFichier);
         }
     }
 

@@ -2,9 +2,11 @@ namespace [package];
 
 //[using]
 
-[Table(name = "[tableName]")]
+[Table("[tableName]")]
 class [className]
 {
 
 [fields]
+
+[encapsulation]   
 }

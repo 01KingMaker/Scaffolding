@@ -1,1 +1,1 @@
-    @PrimaryKey(prefix = "", sequence = "", length = 0)
+    @Id(prefix = "", sequence = "", length = 0)

@@ -1,4 +1,6 @@
-public class [Name]Service : I[Name]Service
+namespace Model.Service;
+
+public class [Name]Service
 {
     private DataContext _context;
     private readonly IMapper _mapper;
@@ -21,14 +23,9 @@ public class [Name]Service : I[Name]Service
 
     public void Create(CreateRequest model)
     {
-        // validate
         if (_context.[Name]s.Any(x => x.Email == model.Email))
-            throw new AppException("[Name] with the email '" + model.Email + "' already exists");
-
-        // map model to new [Name] object
+            throw new Exception("[Name] with the email '" + model.Email + "' already exists");
         var [Name] = _mapper.Map<[Name]>(model);
-
-        // hash password
         [Name].PasswordHash = BCrypt.HashPassword(model.Password);
 
         // save [Name]
@@ -39,16 +36,11 @@ public class [Name]Service : I[Name]Service
     public void Update(string id, UpdateRequest model)
     {
         var [Name] = get[Name](id);
-
-        // validate
         if (model.Email != [Name].Email && _context.[Name]s.Any(x => x.Email == model.Email))
             throw new AppException("[Name] with the email '" + model.Email + "' already exists");
 
-        // hash password if it was entered
         if (!string.IsNullOrEmpty(model.Password))
             [Name].PasswordHash = BCrypt.HashPassword(model.Password);
-
-        // copy model to [Name] and save
         _mapper.Map(model, [Name]);
         _context.[Name]s.Update([Name]);
         _context.SaveChanges();
@@ -61,7 +53,6 @@ public class [Name]Service : I[Name]Service
         _context.SaveChanges();
     }
 
-    // helper methods
     private [Name] get[Name](string id)
     {
         var [Name] = _context.[Name]s.Find(id);

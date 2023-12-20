@@ -1,8 +1,0 @@
-public interface I[Name]Service
-{
-   IEnumerable<[Name] GetAll();
-   [Name]GetById(int id);
-   void Create(CreateRequest model);
-   void Update(int id, UpdateRequest model);
-   void Delete(int id);
-}
