@@ -47,16 +47,19 @@ public class Database {
         }
     }
 
-    public void setDatabase(Connection connexion) throws ClassNotFoundException, SQLException{
-        this.tables = new ArrayList<>();
+    public void setDatabase(Connection connexion) throws ClassNotFoundException, SQLException {
+
         Table table;
         Column column;
         String nomColonne, typeColonne, nomTable;
         ResultSet resultSetColonnes, resultSetTables;
         DatabaseMetaData metaData = connexion.getMetaData(); 
         boolean isPrimaryKey, isForeignKey;
+        
+        this.tables = new ArrayList<>();
         this.databaseName = connexion.getCatalog();
         resultSetTables = metaData.getTables(this.databaseName, null, "%", new String[]{"TABLE"});
+
         while (resultSetTables.next()) {
             nomTable = resultSetTables.getString("TABLE_NAME");
             resultSetColonnes = metaData.getColumns(this.databaseName, null, nomTable, "%");
